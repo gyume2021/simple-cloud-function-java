@@ -28,3 +28,5 @@ cloud-function-gcs-trigger/src/test/java/functions/Example*
 
 cloud-function-http-trigger/.gradle
 **/build/
+
+info
