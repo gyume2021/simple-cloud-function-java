@@ -19,3 +19,12 @@ gradle-app.setting
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+ 
+cloud-function-gcs-trigger/target
+cloud-function-gcs-trigger/src/main/java/functions/eventpojos
+cloud-function-gcs-trigger/src/test/java/functions/eventpojos
+cloud-function-gcs-trigger/src/test/java/functions/Example*
+
+
+cloud-function-http-trigger/.gradle
+**/build/
