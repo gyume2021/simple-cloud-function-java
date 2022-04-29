@@ -31,11 +31,11 @@ gcloud functions deploy java-gcs-function \
     --entry-point functions.HelloGcs \
     --runtime java11 \
     --memory 512MB \
-    --trigger-resource e2eelab-buck-ttt \
+    --trigger-resource <YOUR_TRIGGER_BUCKET_NAME> \
     --trigger-event google.storage.object.finalize \
     --region asia-east1
 ```
-<YOUR_TRIGGER_BUCKET_NAME>
+
 ## Reference
 - [Write and run Spark Scala jobs on Dataproc](https://cloud.google.com/dataproc/docs/tutorials/spark-scala)
 - [Create and deploy a HTTP Cloud Function by using Java](https://cloud.google.com/functions/docs/create-deploy-http-java)
