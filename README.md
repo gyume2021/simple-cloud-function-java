@@ -86,11 +86,40 @@ gsutil rm -r gs://<BUCKET_NAME>/
 ./cs launch scalac -- <FILE_PATH>
 ```
 
+## Create a Dataproc workflow template that runs a wordcount job
+Create a Cloud function to trigger the wordcount workflow when a file is added to Cloud Storage, and use separate input and output buckets to avoid recursion.
+
+### Create a workflow template
+```bash
+gcloud dataproc workflow-templates create wordcount-template \
+    --region=asia-east1
+```
+
+### Add the wordcount job to the workflow template
+```bash
+gcloud dataproc workflow-templates add-job hadoop \
+    --workflow-template=wordcount-template \
+    --step-id=count \
+    --jar=file:///usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar \
+    --region=asia-east1 \
+    -- wordcount gs://<input-bucket> gs://<output-bucket-name>/wordcount-output
+```
+
+gcloud dataproc workflow-templates set-managed-cluster wordcount-template \
+    --cluster-name=wordcount \
+    --single-node \
+    --region=us-central1
+
+gcloud dataproc workflow-templates export wordcount-template \
+    --destination=wordcount.yaml \
+    --region=us-central1
+
 ## Reference
 - [Creates a Dataproc cluster.](https://cloud.google.com/dataproc/docs/samples/dataproc-create-cluster)
 - [Submits a Spark job to a Dataproc cluster](https://cloud.google.com/dataproc/docs/samples/dataproc-submit-job)
 - [Wordcount example](https://cloud.google.com/dataproc/docs/tutorials/spark-scala#running_pre-installed_example_code)
 - [Write and run Spark Scala jobs on Dataproc](https://cloud.google.com/dataproc/docs/tutorials/spark-scala)
 - [Create and deploy a HTTP Cloud Function by using Java](https://cloud.google.com/functions/docs/create-deploy-http-java)
+- [Workflow using Cloud Functions](https://cloud.google.com/dataproc/docs/tutorials/workflow-function)
 - [Google Cloud Storage Triggers](https://cloud.google.com/functions/docs/calling/storage#functions-calling-storage-go)
 - [coursier](https://get-coursier.io/docs/cli-launch)
