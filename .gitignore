@@ -30,5 +30,7 @@ cloud-function-http-trigger/.gradle
 
 info
 
-dataproc-jobs/*.class
-dataproc-jobs/*.tasty
+dataproc-jobs/scala/*.class
+dataproc-jobs/scala/*.tasty
+
+cloud-storage-upload-file/python/cloud-storage
