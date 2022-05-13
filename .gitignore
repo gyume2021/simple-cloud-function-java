@@ -32,5 +32,7 @@ info
 
 dataproc-jobs/scala/*.class
 dataproc-jobs/scala/*.tasty
+dataproc-jobs/python/dataproc
+dataproc-jobs/python/.env.yaml
 
 cloud-storage-upload-file/python/cloud-storage

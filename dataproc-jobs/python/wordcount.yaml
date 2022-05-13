@@ -1,0 +1,20 @@
+jobs:
+- hadoopJob:
+    args:
+    - wordcount
+    - gs://e2eelab-dataproc-input
+    - gs://e2eelab-dataproc-output/wordcount-output
+    mainJarFileUri: file:///usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar
+  stepId: count
+placement:
+  managedCluster:
+    clusterName: wordcount
+    config:
+      softwareConfig:
+        properties:
+          dataproc:dataproc.allow.zero.workers: 'true'
+parameters:
+- name: INPUT_BUCKET_URI
+  description: wordcount input bucket URI
+  fields:
+  - jobs['count'].hadoopJob.args[1]
