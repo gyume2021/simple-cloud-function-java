@@ -6,7 +6,7 @@ import os
 # reference: https://chenming.io/create-dataproc-cluster-to-run-pyspark-using-cloud-functions/#setup-cloud-functions-to-insert-into-bigtable
 # reference: https://cloud.google.com/sdk/gcloud/reference/dataproc/workflow-templates/add-job
 
-def instantiate_inline_workflow_template(event, context):
+def instantiate_inline_workflow_template(event, context=None):
     # Initialise clients
     storage_client = storage.Client()
     # publisher = pubsub_v1.PublisherClient()

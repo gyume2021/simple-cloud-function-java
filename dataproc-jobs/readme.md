@@ -69,6 +69,11 @@ gcloud dataproc workflow-templates set-managed-cluster wordcount-template \
 
 ## Test
 ```bash
+# https://cloud.google.com/functions/docs/running/calling#background-function-curl-tabs-storage
+gs://chenmingyong-cloud-dataproc-input/input.txt
+functions_framework --target=instantiate_inline_workflow_template
+curl -d '{"bucket":"e2eelab-dataproc-input", "name":"rose.txt"}' -X POST http://localhost:8080
+
 # copy text file to bucket
 gsutil cp gs://pub/shakespeare/rose.txt gs://e2eelab-dataproc-input  [input-bucket]
 
@@ -114,3 +119,4 @@ gcloud functions delete helloGCS --region=asia-east1
 # reference
 - https://cloud.google.com/dataproc/docs/tutorials/workflow-function
 - https://cloud.google.com/dataproc/docs/concepts/workflows/using-workflows#gcloud-command
+- https://cloud.google.com/functions/docs/running/function-frameworks#functions-local-ff-configure-python
